@@ -1,0 +1,23 @@
+{
+  "name": "try-greycork",
+  "description": "--",
+  "main": "?",
+  "authors": [
+    "hellovelocity"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "greycork",
+    "hellovelocity"
+  ],
+  "homepage": "--",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}

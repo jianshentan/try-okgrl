@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Try Greycork on Mobile</title>
+    		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="Index,Follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    
+    <!-- custom css -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- bootstrap css-->
+    <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css'>
+    <!-- custom font -->
+    <link rel='stylesheet' href='/stylesheets/fonts.css' />
+   
+    
+ 	  <!-- load jquery minified js -->
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- load bootstrap minified js -->
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- load load-image js minified -->
+		<script src="/javascripts/load-image.all.min.js"></script>
+		<!-- load itemslide js minified -->
+		<script src="/javascripts/itemslide.min.js"></script>
+		
+		<script>var mobile = false;</script>
+		
+		<!-- load custom scripts -->
+		<script src="/javascripts/index.js"></script>
+		<!-- load custom gestures script -->
+		<script src="/javascripts/sticker.js"></script>
+		<!-- load custom canvas script -->
+		<script src="/javascripts/canvas.js"></script>
+		
+  </head>
+  
+  <body>
+  	<!-- notification! -->
+  	<div id="notification">
+  		<div id="notification-bg"></div>
+  		<div id="notification-container">
+	  		<!-- content of notification -->
+	  		<div id="notification-content">
+	  			empty notice!
+	  		</div>
+	  		<!-- options are OK or Cancel -->
+	  		<div id="notification-confirm">
+	  			<div id="notification-confirm-cancel" class="notification-button">Cancel</div>
+	  			<div id="notification-confirm-ok" class="notification-button">OK</div>
+	  		</div>
+	  		<!-- options are just OK -->
+	  		<div id="notification-alert">
+	  			<div id="notification-alert-ok" class="notification-button">OK</div>
+	  		</div>
+  		</div>
+  	</div>
+    
+    <!-- sticker -->
+		<div id="sticker-menu">
+			<div id="sticker-menu-bar">
+				<div id="sticker-nav-button">
+					<img src="/images/menu-icon.png">
+				</div>
+				<div id="sticker-menu-bar-label">Menu</div>
+			</div>
+			<div id="sticker-menu-stickers">
+				<div id="sticker-menu-label">Select a sticker</div>
+				<!-- 
+				
+				This part is generated in canvas.js
+				The structure is as follows:
+				
+			  <div class="row sticker-menu-row">
+      		<div class="col-xs-6 sticker-menu-col">
+      			<img class="sticker-icon" src="/images/stickers/square.png"/>
+      		</div>
+      		<div class="col-xs-6 sticker-menu-col">
+      			<img class="sticker-icon" src="/images/stickers/test.png"/>
+      		</div>
+      	</div>
+      	....
+      	
+      	-->
+      </div>
+		</div>
+		
+		<!-- Nav bar -->
+		<div id="nav-container" class="">
+			<div id="nav-container-close">
+				<div id="nav-button-close" class="generic-button">
+					<img src="/images/close-icon.png" class="">
+				</div>
+			</div>
+			<div id="nav-container-top">
+				<img src="/images/slide1.png">
+				<br><br>
+				<div>Greycork<br>Home Try-out</div>
+			</div>
+			<div id="nav-container-bottom">
+				<div id="nav-play" class="nav-item">Start Over</div>
+				<div id="nav-instructions" class="nav-item">Instructions</div>
+				<div id="nav-store" class="nav-item">Store</div>
+				<div id="nav-blog" class="nav-item">Blog</div>
+				<div id="nav-privacy" class="nav-item">Privacy Policy</div>
+			</div>
+		</div>
+		
+		<!-- Slider -->
+		<div id="slider">
+			<div id="slider-overlay"></div>
+			<div id="slides" class="blue-gradient-bg">
+				
+				<div id="slider-logo">
+		    	<img src="/images/greycork-logo.png">
+		    </div>
+		    
+		    <div id="slider-left" class="slider-direction">
+		    	&larr;
+		    </div>
+		    <div id="slider-right" class="slider-direction">
+		    	&rarr;
+		    </div>
+		    
+	    	<div id="slider-navigation" class="">
+					<div class="slider-nav active" data-index="0"></div>
+					<div class="slider-nav" data-index="1"></div>
+					<div class="slider-nav" data-index="2"></div>
+					<div class="slider-nav" data-index="3"></div>
+					<div class="slider-nav" data-index="4"></div>
+				</div>
+				
+				<div id="skip-tutorial">skip the tutorial &rarr;</div>	
+				
+				<ul>
+					
+					<!-- slide 1 -->
+					<li>
+						<div class="slide-content active">
+				    	<img src="/images/slide1.png">
+				    	<br><br>
+				    	<div class="" style="font-size: 1.5em;">
+				    		Play with stickers and imagine your home with Greycork.
+				    	</div>
+				    </div>	
+					</li>
+					
+					<!-- slide 2 -->
+					<li>
+						<div class="slide-content">
+				    	<img src="/images/slide2.png">
+				    	<br><br>
+				    	<div class="" style="font-size: 1.5em;">
+				    		Upload a picture of your home.
+				    	</div>
+				    </div>
+					</li>
+					
+					<!-- slide 3 -->
+				  <li class="slide">
+				  	<div class="slide-content">
+				    	<img src="/images/slide3.png">
+				    	<br><br>
+				    	<div class="" style="font-size: 1.5em;">
+				    		Select a sticker to add to your scene.
+				    	</div>
+				    </div>
+				  </li>
+				  					   
+					<!-- slide 4 -->
+				  <li class="slide">
+				  	<div class="slide-content">
+				    	<img src="/images/slide4.png">
+				    	<br><br>
+				    	<div class="" style="font-size: 1.5em;">
+				    		Rotate, scale, and move your stickers.
+				    	</div>
+				    	<div class="" style="font-size: 1.0em;">
+				    		(Hold the 'shift-key' to <strong>rotate</strong> & <strong>scale</strong>)
+				    	</div>
+				    </div>
+				  </li>
+				  
+					<!-- slide 5 -->
+				  <li class="slide">
+				    <div class="slide-content">
+				  		<div id="play-now">Play Now</div>
+				  	</div>
+				  </li>
+					
+				</ul>	
+			</div>	
+		</div>
+		
+		<div id="main">
+  		
+			<!-- instructions/background-image -->
+			<div id="instructions-container" class="active">
+				<div id="instructions">
+					<div style="font-size: 1.4em;">Upload a photo of a space to start!</div>
+					<br>
+					<div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>
+				</div>
+				<div id="instructions-arrow">&darr;</div>	
+			</div>
+	
+			<!-- canvas -->
+			<div id="editor-middle">
+				<canvas id="canvas"></canvas>	
+				<img id="saved-img"/>
+			</div>
+			
+      <!-- bottom -->
+      <div id="editor-bottom"> <!-- height 20vh -->
+
+				<!-- add sticker button -->
+        <div id="sticker-button" class="generic-button">
+        	<img src="/images/sticker-menu-icon.png" class="generic-button-image">
+        </div>
+        
+        <!-- add remove sticker button -->
+        <div id="remove-sticker-button" class="generic-button">
+        	<img src="/images/remove-sticker-icon.png" class="generic-button-image">
+        </div>
+        
+				<!-- add trash canvas button -->
+        <div id="trash-button" class="generic-button">
+        	<img src="/images/trash-icon.png" class="generic-button-image">
+        </div>
+
+  		  <!-- Take picture button -->
+	  		<label id="camera-button" class="generic-button active">
+	  		  <img src="/images/upload-icon.png" class="generic-button-image"/>
+	        <input type="file" accept="image/*" capture="camera" id="camera">
+	  		</label>
+
+				<!-- save image button -->
+        <div id="save-button" class="generic-button">
+        	<img src="/images/save-icon.png" class="generic-button-image">
+        </div>
+
+				<!-- Show on download image page-->
+				<div id="promocode-container">
+					<div id="promocode-content">
+						<a id="download-image-url" href="" download="try-greycork.png"><div id="download-image-button">Download your image</div></a>
+						<div class="">
+							Looks like you're ready to check out
+							<a href="" style="color:white;text-decoration:underline">the Greycork store &rarr;</a>
+						</div>
+					</div>
+				</div>
+				
+  		</div>
+ 		
+      <img id="frame" width="0" height="0" style="display:none;">
+  	</div>
+		
+  </body>
+
+</html>
