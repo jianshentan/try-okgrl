@@ -1,18 +1,7 @@
-
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
-
-
-Hi there! Welcome to Cloud9 IDE!
-
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
+## Install, Setup and Launch application
+1. Set up environment variables:
+    - AZURE_STORAGE_ACCESS_KEY=<access-key>
+    - AZURE_STORAGE_ACCOUNT=<account-name>
+    - AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=http;AccountName=<account-name>;AccountKey=<access-key>
+2. **npm install** to update packages
+3. **node bin/www** to run the application
