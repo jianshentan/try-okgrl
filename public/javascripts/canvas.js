@@ -181,7 +181,7 @@ function loadImageToCanvas(file, fileName, isUrl) {
   //var fileName = file.name;
   
   var editor = $("#"+EDITOR_CONTAINER_ID);
-  var sizeMultiplier = isUrl ? 1 : SIZE_MULTIPLIER;
+  SIZE_MULTIPLIER = isUrl ? 1 : SIZE_MULTIPLIER;
   
   // trick to make sure element is fired even when same file is selected
   $("#"+CAMERA_ID).val("");
@@ -189,10 +189,10 @@ function loadImageToCanvas(file, fileName, isUrl) {
   loadImage.parseMetaData(file, function(data) {
     var options = { 
       canvas: true, 
-      maxWidth: editor.width() * sizeMultiplier,
-      minWidth: editor.width() * sizeMultiplier,
-      maxHeight: editor.height() * sizeMultiplier,
-      minHeight: editor.height() * sizeMultiplier 
+      maxWidth: editor.width() * SIZE_MULTIPLIER,
+      minWidth: editor.width() * SIZE_MULTIPLIER,
+      maxHeight: editor.height() * SIZE_MULTIPLIER,
+      minHeight: editor.height() * SIZE_MULTIPLIER 
     };  
     if (data.exif) {
       options.orientation = data.exif.get('Orientation');
@@ -236,7 +236,7 @@ function loadImageToCanvas(file, fileName, isUrl) {
       
       var ctx = canvas.getContext('2d');
       ctx.drawImage(tempCanvas, 0, 0);
-      $(canvas).css("width", ($(canvas).width() / sizeMultiplier) + "px");
+      $(canvas).css("width", ($(canvas).width() / SIZE_MULTIPLIER) + "px");
       
       // image offsets to keep canvas centered
       $(canvas).css("left", "50%");
@@ -565,6 +565,7 @@ $(window).on('closeDownloadOverlay', function(e, p1, p2) {
   // hide all buttons in editor
   $("#"+SAVE_BUTTON_ID).removeClass("active"); // hide save button
   $("#"+START_BUTTON_ID).removeClass("active"); // hide save button
+  $("#"+CANVAS_INSTRUCTION_ID).removeClass("active"); // hide canvas shift instructions
   $("#"+TRASH_BUTTON_ID).removeClass("active"); // hide trash icon
   $("#"+CAMERA_BUTTON_ID).removeClass("active"); // hide camera icon
   $("#"+STICKER_BUTTON_ID).removeClass("active"); // hide sticker button

@@ -5,6 +5,9 @@ $(document).ready(function () {
   /**
    * ----------- Carousel ------------
    **/
+   
+  /* DEPRECATED 
+  
   if (mobile) {
     var carousel;
     carousel = $("ul");
@@ -113,6 +116,7 @@ $(document).ready(function () {
   } else {
     $("#slider").show();
   }
+  */
     
   
   /**
