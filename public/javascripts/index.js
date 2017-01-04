@@ -121,17 +121,17 @@ $(document).ready(function () {
   
   var navContainer = $("#nav-container");
   var navWidth = navContainer.width();
-  navContainer.css("left", -navWidth);
+  navContainer.css("right", -navWidth);
   
   $("#nav-button, #sticker-nav-button").click(function() {
     navContainer.animate({
-      left: 0
+      right: 0
     });
   });
   
   $("#nav-button-close").click(function() {
     navContainer.animate({
-      left: -navWidth
+      right: -navWidth
     });
   });
   

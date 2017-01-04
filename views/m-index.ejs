@@ -142,8 +142,6 @@
 					<div id="nav-container-bottom">
 						<div id="nav-play" class="nav-item">Start Over</div>
 						<div id="nav-instructions" class="nav-item">Instructions</div>
-						<div id="nav-store" class="nav-item">Store</div>
-						<div id="nav-blog" class="nav-item">Blog</div>
 						<div id="nav-privacy" class="nav-item">Privacy Policy</div>
 					</div>
 				</div>
@@ -151,11 +149,10 @@
 				<!-- instructions/background-image TODO -->
 				<div id="instructions-container" class="active">
 					<div id="instructions">
-						<div style="font-size: 1.8em;">Take or upload a photo of a space to start!</div>
-						<br>
-						<div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>
+						<div style="font-size: 1.8em;">Take or upload a photo to start!</div>
+						<!--<br><div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>-->
 					</div>	
-					<div id="instructions-arrow">&darr;</div>	
+					<!--<div id="instructions-arrow">&darr;</div>	-->
 				</div>
 		
 				<!-- canvas -->
@@ -265,7 +262,7 @@
 	  				</div>
 		  			-->
 	  			</div>
-	  			<div id="download-overlay-ok-button">Save Image!</div>
+	  			<div id="download-overlay-ok-button">Okay!</div>
 	  		</div>
 	  		
 	      <img id="frame" width="0" height="0" style="display:none;">
@@ -306,7 +303,11 @@
 				    	document.body.className = e.viewName;
 				    });
 			    });
+			  } else {
+		  		$("#brim-main").css("display", "block");
 			  }
+		  } else {
+		  	$("#brim-main").css("display", "block");
 		  }
 		</script>
 		

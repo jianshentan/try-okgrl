@@ -39,6 +39,10 @@
   </head>
   
   <body>
+  	
+  	<!-- OK GRL logo -->
+  	<a href="/" class="okgrl-logo-mini logo" style="top: 0; left: 0"></a>
+  	
   	<!-- notification! -->
   	<div id="notification">
   		<div id="notification-bg"></div>
@@ -96,15 +100,13 @@
 				</div>
 			</div>
 			<div id="nav-container-top">
-				<img src="/images/slide1.png">
+				<img src="/images/nav-image.png">
 				<br><br>
-				<div>Greycork<br>Home Try-out</div>
+				<div>The Sticker Game</div>
 			</div>
 			<div id="nav-container-bottom">
 				<div id="nav-play" class="nav-item">Start Over</div>
 				<div id="nav-instructions" class="nav-item">Instructions</div>
-				<div id="nav-store" class="nav-item">Store</div>
-				<div id="nav-blog" class="nav-item">Blog</div>
 				<div id="nav-privacy" class="nav-item">Privacy Policy</div>
 			</div>
 		</div>
@@ -200,9 +202,8 @@
 			<!-- instructions/background-image -->
 			<div id="instructions-container" class="active">
 				<div id="instructions">
-					<div style="font-size: 1.4em;">Upload a photo of a space to start!</div>
-					<br>
-					<div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>
+					<div style="font-size: 1.4em;">Add a photo to start!</div>
+					<!--<br><div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>-->
 				</div>
 				<div id="instructions-arrow">&darr;</div>	
 			</div>
@@ -210,6 +211,7 @@
 			<!-- canvas -->
 			<div id="editor-middle">
 				<canvas id="canvas"></canvas>	
+				<div id="canvas-instruction">Hold <strong>SHIFT</strong> to rotate and scale stickers</div>
 				<img id="saved-img"/>
 			</div>
 			
@@ -230,12 +232,11 @@
         <div id="trash-button" class="generic-button">
         	<img src="/images/trash-icon.png" class="generic-button-image">
         </div>
-
-  		  <!-- Take picture button -->
-	  		<label id="camera-button" class="generic-button active">
-	  		  <img src="/images/upload-icon.png" class="generic-button-image"/>
-	        <input type="file" accept="image/*" capture="camera" id="camera">
-	  		</label>
+        
+        <!-- Start button -->
+        <div id="start-button" class="generic-button active" onclick="">
+        	<img src="/images/upload-icon.png" class="generic-button-image">
+        </div>
 
 				<!-- save image button -->
         <div id="save-button" class="generic-button">
@@ -253,6 +254,31 @@
 					</div>
 				</div>
 				
+  		</div>
+  		
+  		<!-- upload or select pre-set image -->
+  		<div id="upload-modal-wrapper">
+	  		<div id="upload-modal">
+	  			
+	  		  <!-- Take picture button -->
+		  		<label id="camera-button" class="active">
+		  		  <!--<img src="/images/upload-icon.png" class="generic-button-image"/>-->
+		  		  <div class="">Upload Your Own Image</div>
+		        <input type="file" accept="image/*" capture="camera" id="camera">
+		  		</label>  			
+		  		
+		  		<div id="upload-modal-or">- OR -</div>
+		  		
+	  			<div id="select-backdrop-label">Select A Backdrop</div>	
+	  			<div id="select-backdrop">
+	  				<!-- Sample below
+	  				<div class="backdrop"><img src="/images/backdrops/sample-backdrop.jpg"></div>
+	  				-->
+	  			</div>
+	  			
+	  			<br>
+	  			<div id="upload-modal-close">close</div>
+	  		</div>
   		</div>
  		
       <img id="frame" width="0" height="0" style="display:none;">

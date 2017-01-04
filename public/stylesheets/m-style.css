@@ -8,7 +8,7 @@ body {
   height: 100vh;
   position: relative;
   padding: 0px;
-  font-family: 'GT-Pressura', Arial, Helvetica, sans-serif !important;
+  font-family: 'Boogaloo', Arial, Helvetica, sans-serif !important;
 }
 #main {
   width: 100%;
@@ -22,7 +22,7 @@ body {
   overflow-y: hidden; 
   height: 80vh;
   width: 100vw;
-  background-color: rgba(0,0,0,0.1);
+  /* background-color: rgba(0,0,0,0.1); */
 }
 #editor-bottom {
   /* border-top: 2px solid red; */
@@ -30,6 +30,7 @@ body {
   height: 20vh;
   width: 100vw;
   z-index: 200;
+  background-color: rgba(255,50,100,0.5);
 }
 #instructions-container {
   z-index: 50;  
@@ -38,8 +39,10 @@ body {
   top: 0px;
   width: 100vw;
   height: 100vh;
-  background-image: url("../images/instructions_bg.png");
-  background-size: cover;
+  background-image: url("../images/nav-image.png");
+  background-size: 85%;
+  background-position: center 25%;
+  background-repeat: no-repeat;
   color: white;
   display: none;
 }
@@ -49,10 +52,13 @@ body {
 #instructions {
   position: absolute;
   width: 70vw;
-  top: 45%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
+  background-color: rgba(255,255,255,0.75);
+  color: #fc15ab;
+  border: 3px solid #fc15ab;
 }
 #instructions-disclaimer {
   border: 2px solid white;
@@ -121,6 +127,7 @@ body {
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   width: 80%;
+  font-size: 1.5em;
 }
 #sticker-menu-stickers {
   padding-left:5vw;
@@ -139,7 +146,7 @@ body {
   text-align: center;  
 }
 .sticker-icon {
-  width: 30vw;
+  width: 20vw;
   display: block;
   margin: 0 auto;
 }
@@ -208,8 +215,8 @@ body {
   top: 50%;
   transform: translateY(-50%);
   display: none;
-  background-color: #1991F4;
-  border: 2px solid #1991F4;
+  background-color: white;
+  border: 2px solid #fc15ab;
 }
 #save-button { /* right aligned */
   position: absolute;
@@ -218,7 +225,7 @@ body {
   transform: translateY(-50%);
   display: none;
   background-color: white !important;
-  border: 2px solid #1991F4;
+  border: 2px solid #fc15ab;
 }
 #trash-button,
 #camera-button { /* centered */
@@ -227,8 +234,8 @@ body {
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   display: none;
-  background-color: #1991F4;
-  border: 2px solid #1991F4;
+  background-color: white;
+  border: 2px solid #fc15ab;
 }
 .generic-button-image {
   margin-left: 2.0vw;
@@ -237,7 +244,8 @@ body {
   height: 10vw;
 }
 #nav-button > .generic-button-image {
-  margin-top: 2.2vw;
+  margin-top: 2.4vw;
+  margin-left: 2.6vw;
 }
 #camera-button.active,
 #save-button.active,
@@ -382,13 +390,14 @@ li.slide {
  **/
 #nav-button {
   position: absolute;
-  background-color: rgba(0,0,0,0.2) !important;
+  background-color: rgba(255,50,100,0.5) !important;
   border-radius: inherit !important;
+  right: 0px;
 }
 #nav-container {
   background-color: white;
   width: 70vw;
-  left: 0px;
+  right: 0px;
   top: 0px;
   height: 100vh;
   z-index: 300;

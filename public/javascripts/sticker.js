@@ -76,9 +76,17 @@ Sticker = function(imageSrc, containerElementSelector) {
   
   // listeners
   if (window.PointerEvent) {
-    input.pointers=[];
-    sticker.addEventListener('pointerdown', pointerDownHandler, false);
+    if (mobile) {
+      input.pointers=[];
+      sticker.addEventListener('pointerdown', pointerDownHandler, false);
+    } else {
+      activateShift();
+    }
   } else {
+    activateShift();
+  }
+  
+  function activateShift() {
     sticker.addEventListener('touchstart', onTouchStart);
     sticker.addEventListener('mousedown', onPlateMouseDown);
   }
@@ -133,8 +141,8 @@ Sticker = function(imageSrc, containerElementSelector) {
     
     sticker.style[prefixedTransform] = 'translate('+posX+'px,'+posY+'px) rotate('+currentRotation+'deg) scale('+currentScale+') translateZ(0)';
     
-    velocityX = velocityX * 0.50;
-    velocityY = velocityY * 0.50;
+    velocityX = velocityX * 0.80;
+    velocityY = velocityY * 0.80;
     
     input.dragDX = 0;
     input.dragDY = 0;
@@ -147,6 +155,7 @@ Sticker = function(imageSrc, containerElementSelector) {
   	document.addEventListener('mouseup', onDocumentMouseUp);
   	document.addEventListener('mousemove', onDocumentMouseMove);
   	if(event.shiftKey === true) {
+  	  console.log("shift is clicked!");
   		//assume second touchpoint is in middle of screen
   		handleGestureStart(posX, posY, event.clientX, event.clientY);
   	} else {
@@ -158,6 +167,7 @@ Sticker = function(imageSrc, containerElementSelector) {
   
   function onDocumentMouseMove(event) {
   	if(event.shiftKey) {
+  	  console.log("shift is clicked2!");
   		handleGesture(posX, posY, event.clientX, event.clientY); 
   	} else {
   		handleDragging(event.clientX, event.clientY);
@@ -225,7 +235,7 @@ Sticker = function(imageSrc, containerElementSelector) {
     } else {
       input.pointers[pointerIndex] = event;
     }
-    if (input.pointeres.length === 1) {
+    if (input.pointers.length === 1) {
       handleDragStart(input.pointers[0].clientX, input.pointers[0].clientY);
       window.addEventListener("pointermove", pointerMoveHandler, false);
       window.addEventListener("pointerup", pointerUpHandler, false);

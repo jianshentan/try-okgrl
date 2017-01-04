@@ -3,6 +3,7 @@
 /* globals mobile */
    
 var CAMERA_ID = 'camera';
+var START_BUTTON_ID = 'start-button';
 var CAMERA_BUTTON_ID = 'camera-button';
 var SAVE_BUTTON_ID = 'save-button';
 var STICKER_BUTTON_ID = 'sticker-button';
@@ -13,6 +14,7 @@ var CANVAS_ID = 'canvas';
 var SAVED_IMAGE_ID = 'saved-img';
 var TRASH_BUTTON_ID = 'trash-button';
 var CAMERA_ICON_ID = 'camera-icon';
+var CANVAS_INSTRUCTION_ID = 'canvas-instruction';
 
 var STICKER_MENU_ID = 'sticker-menu';
 var STICKER_MENU_BACK_ID = 'sticker-menu-bar-back';
@@ -38,6 +40,10 @@ var NOTIFICATION_ALERT_OK_BUTTON_ID = 'notification-alert-ok';
 var NOTIFICATION_CONFIRM_OK_BUTTON_ID = 'notification-confirm-ok';
 var NOTIFICATION_CONFIRM_CANCEL_BUTTON_ID = 'notification-confirm-cancel';
 
+var START_MODAL_WRAPPER_ID = 'upload-modal-wrapper';
+var CLOSE_START_MODAL_BUTTON_ID = 'upload-modal-close';
+var BACKDROP_CONTAINER_ID = 'select-backdrop';
+
 var SIZE_MULTIPLIER = 2; // how much to scale the downloaded/saved image 
 var stickerStack = []; // stack of active stickers
 var storedFileId = ''; // storedFileId
@@ -45,103 +51,86 @@ var storedFileId = ''; // storedFileId
 $(document).ready(function() {
 
   /**
+   * Initialize start modal events
+   **/
+  $("#"+START_BUTTON_ID).click(function() {
+    $(window).trigger("openStartModal", [ /* param1, param2 */]);
+  });
+  $("#"+CLOSE_START_MODAL_BUTTON_ID).click(function() {
+    $(window).trigger("closeStartModal", [ /* param1, param2 */]);
+  });
+
+  /**
    * Take picture / Upload picture and put picture in the background canvas
    **/
    
-  var editor = $("#"+EDITOR_CONTAINER_ID);
   var camera = document.getElementById(CAMERA_ID);
   
   camera.addEventListener('change', function(e) {
     var file = e.target.files[0]; 
     var fileName = file.name;
-    
-    // trick to make sure element is fired even when same file is selected
-    $("#"+CAMERA_ID).val("");
-    
-    loadImage.parseMetaData(file, function(data) {
-      var options = { 
-        canvas: true, 
-        maxWidth: editor.width() * SIZE_MULTIPLIER,
-        minWidth: editor.width() * SIZE_MULTIPLIER,
-        maxHeight: editor.height() * SIZE_MULTIPLIER,
-        minHeight: editor.height() * SIZE_MULTIPLIER 
-      };  
-      if (data.exif) {
-        options.orientation = data.exif.get('Orientation');
-      }
-      loadImage(file, function(tempCanvas) {
-        
-        // send file to server so that this raw image can be stored
-        var data = tempCanvas.toDataURL('image/png');
-        var d = new Date();
-        
-        // fileId: raw-mm/dd/yyyy-time-<fileName>
-        var fileId = d.getMonth() + "" +
-                     d.getDate() + "" +
-                     d.getYear() + "-" + 
-                     d.getTime() + "-" + fileName;
-                     
-        storedFileId = fileId;
-        $.post("/raw-image", { image: data, fileId: storedFileId }, function(data) {});
-        
-        /**
-         * We need to draw the resulting canvas (tempCanvas) into
-         * our canvas object, instead of just adding the tempCanvas
-         * to the page because the tempCanvas has exif meta data
-         * attached to it, complicating rotations...
-         * By drawing the tempCanvas into our canvas element, we
-         * flatten the image thereby mitigating rotation complexities
-         **/
-         
-        var canvas = document.getElementById(CANVAS_ID);
-        
-        // set width - reduce width on desktop if its a wide image
-        if (!mobile) {
-          canvas.width = tempCanvas.width > 1.5 * tempCanvas.height ? 
-            tempCanvas.width - 100 : tempCanvas.width;
-        } else {
-          canvas.width = tempCanvas.width;
-        }
-        
-        // set height 
-        canvas.height = tempCanvas.height;
-        
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(tempCanvas, 0, 0);
-        $(canvas).css("width", ($(canvas).width() / SIZE_MULTIPLIER) + "px");
-        
-        // image offsets to keep canvas centered
-        $(canvas).css("left", "50%");
-        $(canvas).css("top", "50%");
-        $(canvas).css("transform", "translateX(-50%) translateY(-50%)");
-        
-        // canvas is ready!
-        $(window).trigger("uploadImage", [ /* param1, param2 */]);
-      }, options);
-    });
+    var isUrl = false;
+    loadImageToCanvas(file, fileName, isUrl);
   });
+   
+  /**
+   * Generate backdrops from images/backdrops/ directory
+   **/
+  var backdropPaths = [
+    "/images/backdrops/backdrop-1.png",
+    "/images/backdrops/backdrop-2.png",
+    "/images/backdrops/backdrop-3.png",
+    "/images/backdrops/backdrop-4.png"
+  ];
+  var backdropContainer = $("#"+BACKDROP_CONTAINER_ID);
+  
+  for (var i=0; i < backdropPaths.length; i++) {
+    var backdropPath = backdropPaths[i];      
+    var element = $("<div class='backdrop'><img src='"+backdropPath+"'/></div>");
+    backdropContainer.append(element);
+  }
+  
   
   /**
    * Generate sticker menu from stickers in images/stickers/ directory
    **/
     
   var stickerPaths = [
-    "/images/stickers/additional-coffeepot-0.png",
-    "/images/stickers/additional-greycorkbowl-0.png",
-    "/images/stickers/additional-plant-0.png",
-    "/images/stickers/bookshelfshort-0.png",
-    "/images/stickers/bookshelftall-0.png",
-    "/images/stickers/bookshelftall-1.png",
-    "/images/stickers/chaise-0.png",
-    "/images/stickers/chaise-1.png",
-    "/images/stickers/coffeetable-0.png",
-    "/images/stickers/coffeetable-1.png",
-    "/images/stickers/sectional-0.png",
-    "/images/stickers/sidetable-0.png",
-    "/images/stickers/sofa-0.png",
-    "/images/stickers/sofa-1.png",
-    "/images/stickers/sofa-2.png",
-    "/images/stickers/sofa-3.png"
+    "/images/stickers/full-body-1.png",
+    "/images/stickers/full-body-2.png",
+    "/images/stickers/full-body-3.png",
+    "/images/stickers/full-body-4.png",
+    "/images/stickers/full-body-5.png",
+    "/images/stickers/full-body-6.png",
+    "/images/stickers/full-body-7.png",
+    "/images/stickers/3star-shoe.png",
+    "/images/stickers/acne-boot.png",
+    "/images/stickers/boombox.png",
+    "/images/stickers/burberry-lipstick.png",
+    "/images/stickers/cowboy-boot.png",
+    "/images/stickers/diamondy-sunglasses.png",
+    "/images/stickers/fannumberone-iphonecase.png",
+    "/images/stickers/fila-flipflop.png",
+    "/images/stickers/flying-saucer-clutch.png",
+    "/images/stickers/galactic-clutch.png",
+    "/images/stickers/gameover-iphonecase.png",
+    "/images/stickers/girls-beanie.png",
+    "/images/stickers/givenchy-flipflop.png",
+    "/images/stickers/heart-clutch.png",
+    "/images/stickers/jvc-headphones.png",
+    "/images/stickers/kenzo-clutch.png",
+    "/images/stickers/marcjacobs-purse.png",
+    "/images/stickers/moschino-belt.png",
+    "/images/stickers/moschino-sneaker.png",
+    "/images/stickers/mouth-sunglasses.png",
+    "/images/stickers/naisinc-nailpolish.png",
+    "/images/stickers/offwhite-sneakers.png",
+    "/images/stickers/pink-boot.png",
+    "/images/stickers/pink-glasses.png",
+    "/images/stickers/pink-wallet.png",
+    "/images/stickers/puffball.png",
+    "/images/stickers/purple-bow.png",
+    "/images/stickers/robot-alarmclock.png"
   ];
   var stickersContainer = $("#"+STICKER_MENU_STICKERS_ID);
   
@@ -173,6 +162,106 @@ $(document).ready(function() {
    
 });
 
+function loadImageToCanvas(file, fileName, isUrl) {
+  //var file = e.target.files[0]; 
+  //var fileName = file.name;
+  
+  var editor = $("#"+EDITOR_CONTAINER_ID);
+  var sizeMultiplier = isUrl ? 1 : SIZE_MULTIPLIER;
+  
+  // trick to make sure element is fired even when same file is selected
+  $("#"+CAMERA_ID).val("");
+  
+  loadImage.parseMetaData(file, function(data) {
+    var options = { 
+      canvas: true, 
+      maxWidth: editor.width() * sizeMultiplier,
+      minWidth: editor.width() * sizeMultiplier,
+      maxHeight: editor.height() * sizeMultiplier,
+      minHeight: editor.height() * sizeMultiplier 
+    };  
+    if (data.exif) {
+      options.orientation = data.exif.get('Orientation');
+    }
+    loadImage(file, function(tempCanvas) {
+      
+      // send file to server so that this raw image can be stored
+      var data = tempCanvas.toDataURL('image/png');
+      var d = new Date();
+      
+      // fileId: raw-dd/mm/yyyy-time-<fileName>
+      var fileId = d.getMonth() + "" +
+                   d.getDate() + "" +
+                   d.getYear() + "-" + 
+                   d.getTime() + "-" + fileName;
+                   
+      storedFileId = fileId;
+      $.post("/raw-image", { image: data, fileId: storedFileId }, function(data) {});
+      
+      /**
+       * We need to draw the resulting canvas (tempCanvas) into
+       * our canvas object, instead of just adding the tempCanvas
+       * to the page because the tempCanvas has exif meta data
+       * attached to it, complicating rotations...
+       * By drawing the tempCanvas into our canvas element, we
+       * flatten the image thereby mitigating rotation complexities
+       **/
+       
+      var canvas = document.getElementById(CANVAS_ID);
+      
+      // set width - reduce width on desktop if its a wide image
+      if (!mobile) {
+        canvas.width = tempCanvas.width > 1.5 * tempCanvas.height ? 
+          tempCanvas.width - 100 : tempCanvas.width;
+      } else {
+        canvas.width = tempCanvas.width;
+      }
+      
+      // set height 
+      canvas.height = tempCanvas.height;
+      
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(tempCanvas, 0, 0);
+      $(canvas).css("width", ($(canvas).width() / sizeMultiplier) + "px");
+      
+      // image offsets to keep canvas centered
+      $(canvas).css("left", "50%");
+      $(canvas).css("top", "50%");
+      $(canvas).css("transform", "translateX(-50%) translateY(-50%)");
+      
+      // canvas is ready!
+      $(window).trigger("uploadImage", [ /* param1, param2 */]);
+      
+      // close start modal 
+      $(window).trigger("closeStartModal", [ /* param1, param2 */]);
+      
+    }, options);
+  });
+}
+
+/**
+ * EVENT: 'open start modal'
+ **/
+$(window).on("openStartModal", function(e, p1, p2) {
+  $("#"+START_MODAL_WRAPPER_ID).addClass("active");    
+  $(".backdrop > img").each(function() {
+    $(this).click(function() {
+      var url = $(this).attr("src");
+      var fileName = url.substr(url.lastIndexOf('/') + 1);
+      console.log(fileName);
+      var isUrl = true;
+      loadImageToCanvas(url, fileName, isUrl);
+    });
+  });
+});
+
+/**
+ * EVENT: 'close start modal'
+ **/
+$(window).on("closeStartModal", function(e, p1, p2) {
+  $("#"+START_MODAL_WRAPPER_ID).removeClass("active");    
+});
+ 
 /**
  * EVENT: 'uploadImage'
  **/ 
@@ -180,6 +269,8 @@ $(window).on("uploadImage", function(e, p1, p2) {
   // update buttons
   $("#"+SAVE_BUTTON_ID).addClass("active"); // show save button
   $("#"+TRASH_BUTTON_ID).addClass("active"); // show trash icon
+  $("#"+CANVAS_INSTRUCTION_ID).addClass("active"); // show canvas instruction text 
+  $("#"+START_BUTTON_ID).removeClass("active"); // hide camera icon
   $("#"+CAMERA_BUTTON_ID).removeClass("active"); // hide camera icon
   $("#"+INSTRUCTIONS_CONTAINER_ID).removeClass("active"); // show sticker button
   if (mobile) {
@@ -400,10 +491,12 @@ $(window).on("deleteImage", function(e, p1, p2) {
   
   // hide sticker-menu-button, trash-button and save-button, but show camera-button $("#"+SAVE_BUTTON_ID).removeClass("active"); // show save button $("#"+TRASH_BUTTON_ID).removeClass("active"); // show trash icon
   $("#"+CAMERA_BUTTON_ID).addClass("active"); // hide camera icon
+  $("#"+START_BUTTON_ID).addClass("active"); // hide camera icon
   $("#"+STICKER_BUTTON_ID).removeClass("active"); // show sticker button
   $("#"+REMOVE_STICKER_BUTTON_ID).removeClass("active"); // hide reset button on desktop only
   $("#"+INSTRUCTIONS_CONTAINER_ID).addClass("active"); // show sticker button
   $("#"+SAVE_BUTTON_ID).removeClass('active'); // hide download button
+  $("#"+CANVAS_INSTRUCTION_ID).removeClass("active"); // hide canvas instruction text 
  
 });
 
@@ -457,6 +550,7 @@ $(window).on('openDownloadOverlay', function(e, p1, p2) {
 $(window).on('closeDownloadOverlay', function(e, p1, p2) {
   // hide all buttons in editor
   $("#"+SAVE_BUTTON_ID).removeClass("active"); // hide save button
+  $("#"+START_BUTTON_ID).removeClass("active"); // hide save button
   $("#"+TRASH_BUTTON_ID).removeClass("active"); // hide trash icon
   $("#"+CAMERA_BUTTON_ID).removeClass("active"); // hide camera icon
   $("#"+STICKER_BUTTON_ID).removeClass("active"); // hide sticker button
@@ -472,6 +566,10 @@ $(window).on('closeDownloadOverlay', function(e, p1, p2) {
     
     // enable mobile button
     $("#"+DOWNLOAD_IMAGE_URL_ID).attr("href", dataURLtoBlob($("#"+SAVED_IMAGE_ID).attr("src")));
+    
+    // open navigation menu
+    $("#nav-container").animate({ right: 0 });
+    $("#nav-button-close").hide();
   }
 });
 
