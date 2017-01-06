@@ -77,10 +77,9 @@ $(document).ready(function() {
    * Generate backdrops from images/backdrops/ directory
    **/
   var backdropPaths = [
-    "/images/backdrops/backdrop-1.png",
-    "/images/backdrops/backdrop-2.png",
-    "/images/backdrops/backdrop-3.png",
-    "/images/backdrops/backdrop-4.png"
+    "/images/backdrops/backdrop-1.jpg",
+    "/images/backdrops/backdrop-2.jpg",
+    "/images/backdrops/backdrop-3.jpg"
   ];
   var backdropContainer = $("#"+BACKDROP_CONTAINER_ID);
   

@@ -51,7 +51,7 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(255,255,255,0.85);
   border: 3px solid #fc15ab;
   padding: 5px 20px;
   font-size: 1.5em;
@@ -81,7 +81,7 @@ body {
   width: 320px;  
   height: 100vh;
   /*background-color: rgba(0,0,0,0.8);*/
-  background-color: rgba(255,50,200,0.8);
+  background-color: rgba(255,50,100,0.5);
   position: relative;
   float: right;
   border-left: 2px solid white;
@@ -108,7 +108,7 @@ body {
   color: white;
   text-align: center;
   width: 100%;
-  line-height: 5vh;
+  line-height: 1.5em;
   position: absolute;
   font-size: 1.5em;
 }
