@@ -139,7 +139,7 @@ $(document).ready(function () {
     });
   });
   
-  $("#nav-play").click(function() { 
+  $("#nav-play, #start-over").click(function() { 
     window.location = '/';
   });
   

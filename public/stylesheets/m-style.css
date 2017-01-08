@@ -450,7 +450,7 @@ li.slide {
  **/
 
 #brim-mask, #brim-main {
-  color: #555;
+  color: #fc15ab;
   display: none; 
   z-index: 800 !important;
 }
