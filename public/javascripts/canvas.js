@@ -208,6 +208,7 @@ function loadImageToCanvas(file, fileName, isUrl) {
     loadImage(file, function(tempCanvas) {
       
       // send file to server so that this raw image can be stored
+      /*
       var data = tempCanvas.toDataURL('image/png');
       var d = new Date();
       
@@ -219,6 +220,7 @@ function loadImageToCanvas(file, fileName, isUrl) {
                    
       storedFileId = fileId;
       $.post("/raw-image", { image: data, fileId: storedFileId }, function(data) {});
+      */
       
       /**
        * We need to draw the resulting canvas (tempCanvas) into
@@ -250,6 +252,7 @@ function loadImageToCanvas(file, fileName, isUrl) {
       $(canvas).css("left", "50%");
       $(canvas).css("top", "50%");
       $(canvas).css("transform", "translateX(-50%) translateY(-50%)");
+      $(canvas).css("border", "10px solid white");
       
       // canvas is ready!
       $(window).trigger("uploadImage", [ /* param1, param2 */]);
@@ -267,10 +270,10 @@ function loadImageToCanvas(file, fileName, isUrl) {
 $(window).on("openStartModal", function(e, p1, p2) {
   $("#"+START_MODAL_WRAPPER_ID).addClass("active");    
   $(".backdrop > img").each(function() {
+    $(this).off('click');
     $(this).click(function() {
       var url = $(this).attr("src");
       var fileName = url.substr(url.lastIndexOf('/') + 1);
-      console.log(fileName);
       var isUrl = true;
       loadImageToCanvas(url, fileName, isUrl);
     });
@@ -351,7 +354,7 @@ $(window).on("uploadImage", function(e, p1, p2) {
  **/
 $(window).on("removeSticker", function(e, p1, p2) {
   if (stickerStack.length == 0) {
-    var msg = "The remove-sticker button won't work if there are no stickers! Start by adding stickers from the panel on the left.";
+    var msg = "The remove-sticker button won't work if there are no stickers! Start by adding stickers from the panel on the right.";
     $(window).trigger("notification", [ msg, false, null ]);
   } else {
     stickerStack.pop();
@@ -476,9 +479,11 @@ $(window).on("saveImage", function(e) {
   $("#"+SAVE_BUTTON_ID).off();
   
   // send original image, stickers and final image to the server
+  /*
   $.post("/edited-image", 
     { image: dataURL, fileId: storedFileId }, 
     function() {});
+  */
   
   // reset canvas
   var canvas = document.getElementById(CANVAS_ID);

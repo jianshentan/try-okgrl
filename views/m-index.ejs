@@ -170,11 +170,17 @@
           	<img src="/images/trash-icon.png" class="generic-button-image">
           </div>
 
-	  		  <!-- Take picture button -->
+	  		  <!-- Take picture button
 		  		<label id="camera-button" class="generic-button active">
 		  		  <img src="/images/camera-icon.png" class="generic-button-image"/>
 		        <input type="file" accept="image/*" capture="camera" id="camera" >
 		  		</label>
+		  		-->
+		  		
+			  	<!-- Start button -->
+	        <div id="start-button" class="generic-button active" onclick="">
+	        	<img src="/images/upload-icon.png" class="generic-button-image">
+	        </div>
 
 					<!-- save image button -->
           <div id="save-button" class="generic-button">
@@ -262,15 +268,40 @@
 	  		</div>
 	  		
 	      <img id="frame" width="0" height="0" style="display:none;">
-	  	</div>
 	  	
+		  	<!-- upload or select pre-set image -->
+	  		<div id="upload-modal-wrapper">
+		  		<div id="upload-modal">
+		  			
+		  		  <!-- Take picture button -->
+			  		<label id="camera-button" class="active">
+			  		  <!--<img src="/images/upload-icon.png" class="generic-button-image"/>-->
+			  		  <div class="">Upload Your Own Image</div>
+			        <input type="file" accept="image/*" capture="camera" id="camera">
+			  		</label>  			
+			  		
+			  		<div id="upload-modal-or">- OR -</div>
+			  		
+		  			<div id="select-backdrop-label">Select A Backdrop</div>	
+		  			<div id="select-backdrop">
+		  				<!-- Sample below
+		  				<div class="backdrop"><img src="/images/backdrops/sample-backdrop.jpg"></div>
+		  				-->
+		  			</div>
+		  			
+		  			<br>
+		  			<div id="upload-modal-close">close</div>
+		  		</div>
+	  		</div>
+	  	</div>
+  		
 	  </div>
 	  
  		<div id="brim-mask">
  			<div id="brim-mask-content">
 	 			<img src="/images/nav-image.png" style="width:80%">
 	 			<div class="h1" style="margin-top:10px;">
-	 				The Sticker Book!
+	 				Sticker Book!
 	 			</div>
 	 			<br>
 	 			<div class="h3">Scroll down to begin.</div>

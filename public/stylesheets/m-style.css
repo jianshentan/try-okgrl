@@ -230,7 +230,7 @@ body {
   border: 2px solid #fc15ab;
 }
 #trash-button,
-#camera-button { /* centered */
+#start-button { /* centered */
   position: absolute;
   left: 50%;
   top: 50%;
@@ -249,6 +249,7 @@ body {
   margin-top: 2.4vw;
   margin-left: 2.6vw;
 }
+#start-button.active,
 #camera-button.active,
 #save-button.active,
 #sticker-button.active,
@@ -260,13 +261,23 @@ body {
   display: block;
   font-size: 999px;
   filter: alpha(opacity=0);
-  min-height: 100%;
+  min-height: 1%;
+  height: 1%;
   min-width: 100%;
   opacity: 0;
   position: absolute;
   right: 0;
   text-align: right;
   top: 0;
+}
+#camera-button {
+  width: 100%;
+  line-height: 2em;
+  font-size: 1.5em;
+  color: #fc15ab;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #fc15ab;
 }
 #promocode-container {
   position: absolute;
@@ -432,6 +443,68 @@ li.slide {
   padding: 0 0 2.5vw 5vw;
 }
 
+/**
+ * --------- Upload-modal ----------
+ **/
+#upload-modal-wrapper.active {
+  display: block;
+}
+#upload-modal-wrapper {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 299;
+  background-color: rgba(50,0,10,0.6);
+  top: 0px;
+  left: 0px;
+}
+#upload-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 320px;
+  z-index: 300;
+  background-color: white;
+  padding: 20px;
+}
+#upload-modal-or {
+  width: 100%;
+  text-align: center;
+  color: #333;
+  margin: 10px 0;
+}
+#select-backdrop {
+  border: 2px solid #fc15ab;
+  width: 100%;
+  overflow-y: scroll;
+  height: 332px;
+}
+#select-backdrop-label {
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 2.0em;
+  color: white;
+  background-color: #fc15ab;
+}
+.backdrop {
+  width: 90%;
+  margin: 5%;
+  cursor: pointer;
+}
+.backdrop img {
+  width: 100%;
+}
+#upload-modal-close {
+  padding: 5px 10px;
+  color: #fc15ab;
+  border: 2px solid #fc15ab;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 0 auto;
+  cursor: pointer;
+}
 /**
  * background blue gradient
  **/
