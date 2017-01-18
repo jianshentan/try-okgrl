@@ -211,7 +211,7 @@ body {
   width: 15vw;
   height: 15vw;
 }
-#sticker-button { /* left aligned */
+#trash-button {
   position: absolute;
   left: 10vw;
   top: 50%;
@@ -229,7 +229,7 @@ body {
   background-color: white !important;
   border: 2px solid #fc15ab;
 }
-#trash-button,
+#sticker-button,
 #start-button { /* centered */
   position: absolute;
   left: 50%;
@@ -539,6 +539,6 @@ li.slide {
   left: 10%;
   position: absolute;
   text-align: center;
-  top: 40%;
+  top: 45%;
   transform: translateY(-50%);
 }
