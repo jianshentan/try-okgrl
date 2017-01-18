@@ -166,14 +166,14 @@ body {
   background-color: #fc15ab;
   color: white;
   position: absolute;
-  bottom: 5vw;
-  width: 90vw;
+  bottom: calc(5vw + 60px);
+  width: 80vw;
   height: 60px;
   line-height: 60px;
   text-align: center;
   font-weight: 800;
   font-size: 1.8em;
-  left: 5vw;
+  left: 10vw;
 }
 
 /**

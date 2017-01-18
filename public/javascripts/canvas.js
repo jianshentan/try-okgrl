@@ -81,10 +81,20 @@ $(document).ready(function() {
     "/images/backdrops/backdrop-2.jpg",
     "/images/backdrops/backdrop-3.jpg"
   ];
+  var mobileBackdropPaths = [
+    "/images/backdrops/m-backdrop-1.jpg",
+    "/images/backdrops/m-backdrop-2.jpg",
+    "/images/backdrops/m-backdrop-3.jpg"
+  ];
   var backdropContainer = $("#"+BACKDROP_CONTAINER_ID);
   
   for (var i=0; i < backdropPaths.length; i++) {
-    var backdropPath = backdropPaths[i];      
+    var backdropPath;
+    if (mobile) {
+      backdropPath = mobileBackdropPaths[i];
+    } else {
+      backdropPath = backdropPaths[i];
+    }
     var element = $("<div class='backdrop'><img src='"+backdropPath+"'/></div>");
     backdropContainer.append(element);
   }
@@ -474,6 +484,7 @@ $(window).on("saveImage", function(e) {
   $(img).css("left", "50%");
   $(img).css("top", "50%");
   $(img).css("transform", "translateX(-50%) translateY(-50%)");
+  $(img).css("border", "10px solid white");
   
   $("#"+EDITOR_CONTAINER_ID).append(img);
   $("#"+SAVE_BUTTON_ID).off();
