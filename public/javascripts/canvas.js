@@ -105,12 +105,12 @@ $(document).ready(function() {
    **/
     
   var stickerPaths = [
-    ["/images/stickers/girli1.png", "Girli"],
-    ["/images/stickers/girli2.png", "Girli"],
-    ["/images/stickers/girli3.png", "Girli"],
-    ["/images/stickers/girli5.png", "Girli"],
-    ["/images/stickers/girli6.png", "Girli"],
-    ["/images/stickers/girli7.png", "Girli"],
+    ["/images/stickers/girli1.png", ""],
+    ["/images/stickers/girli2.png", ""],
+    ["/images/stickers/girli3.png", ""],
+    ["/images/stickers/girli5.png", ""],
+    ["/images/stickers/girli6.png", ""],
+    ["/images/stickers/girli7.png", ""],
     ["/images/stickers/zoomer-zuppies-interactive-puppy.png", "Zoomer Zuppies Interactive Puppy"],
     ["/images/stickers/sophie-hulme-puffball.png", "Sophie Hulme Puffball"],
     ["/images/stickers/wowwee-lumi-drone.png", "WowWee Lumi Drone"],
@@ -152,7 +152,6 @@ $(document).ready(function() {
     ["/images/stickers/givenchy-sandal.png", "Givenchy Sandal"],
     ["/images/stickers/acne-boot.png", "Acne Boot"],
     ["/images/stickers/ibex-thermal-fleece.png", "Ibex Thermal Fleece"],
-    ["/images/stickers/versace-blue-chair.png", "Versace Blue Chair"],
     ["/images/stickers/skinnydip-mr-burns-flying-money-bag.png", "Skinnydip Mr Burns Flying Money Bag"],
     ["/images/stickers/kenzo-clutch.png", "Kenzo Clutch"],
     ["/images/stickers/st-laurent-boot.png", "St Laurent Boot"],
