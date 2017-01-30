@@ -9,11 +9,21 @@
 }
 
 @font-face {
-  font-family: ClearSans;
+  font-family: 'Clear Sans';
   src: url('../fonts/ClearSans/ClearSans.eot'); /* IE9 Compat Modes */
   src: url('../fonts/ClearSans/ClearSans.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('../fonts/ClearSans/ClearSans.woff') format('woff'), /* Pretty Modern Browsers */
        url('../fonts/ClearSans/ClearSans.ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Falcon Punch";
+  src: url('../fonts/FalconPunch/FalconPunch.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/FalconPunch/FalconPunch.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/FalconPunch/FalconPunch.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/FalconPunch/FalconPunch.ttf')  format('truetype'); /* Safari, Android, iOS */
   font-weight: normal;
   font-style: normal;
 }
