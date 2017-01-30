@@ -153,7 +153,7 @@ $(document).ready(function() {
     ["/images/stickers/ibex-thermal-fleece.png", "Ibex Thermal Fleece"],
     ["/images/stickers/skinnydip-mr-burns-flying-money-bag.png", "Skinnydip Mr Burns Flying Money Bag"],
     ["/images/stickers/kenzo-clutch.png", "Kenzo Clutch"],
-    ["/images/stickers/st-laurent-boot.png", "St Laurent Boot"],
+    ["/images/stickers/st-laurent-boot.png", "Saint Laurent Boot"],
     ["/images/stickers/miu-miu-boot.png", "Miu Miu Boot"],
     ["/images/stickers/marc-jacobs-purse.png", "Marc Jacobs Purse"],
     ["/images/stickers/tabanlioglu-architects-wallpiece.png", "Tabanlioglu Architects Wallpiece"],
@@ -311,6 +311,9 @@ $(window).on("uploadImage", function(e, p1, p2) {
   } else {
     $("#"+REMOVE_STICKER_BUTTON_ID).addClass("active"); // show reset button on desktop only
   }
+  
+  // open up the sticker menu
+  $("#nav-button-close").click();
   
   if (mobile) {
     
@@ -533,6 +536,7 @@ $(window).on("deleteImage", function(e, p1, p2) {
   $("#"+INSTRUCTIONS_CONTAINER_ID).addClass("active"); // show sticker button
   $("#"+SAVE_BUTTON_ID).removeClass('active'); // hide download button
   $("#"+CANVAS_INSTRUCTION_ID).removeClass("active"); // hide canvas instruction text 
+  $("#"+TRASH_BUTTON_ID).removeClass("active"); // hide trash icon
  
 });
 

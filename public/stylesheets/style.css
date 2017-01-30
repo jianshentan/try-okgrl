@@ -9,8 +9,11 @@ body {
   height: 100vh;
   position: relative;
   padding: 0px;
-  font-family: 'Boogaloo', Arial, Helvetica, sans-serif !important;
-  font-size: 1.2em;
+  font-family: 'ClearSans', Arial, Helvetica, sans-serif !important;
+  font-size: 1.0em;
+}
+.boogaloo {
+  font-family: 'boogaloo', Arial, Helvetica, sans-serif !important;
 }
 #main {
   background-image: url("../images/bg.jpg");
@@ -138,6 +141,7 @@ body {
 }
 .sticker-icon {
   width: 70px;
+  cursor: pointer;
   display: block;
   margin: 0 auto;
   top: 50%;
@@ -163,7 +167,7 @@ body {
   right: 0px;
   top: 0px;
   height: 100vh;
-  z-index: 300;
+  z-index: 130;
   position: fixed;
   color: white;
 }
@@ -281,6 +285,8 @@ body {
   left: 0px;
   top: 0px;
   z-index: 110; 
+  border: 2px dashed rgba(0,0,0,0);
+  border-radius: 20px;
 }
 #canvas-instruction.active {
   display: block; 
@@ -299,7 +305,6 @@ body {
  * --------- Editor - Bottom ----------
  **/
 .generic-button {
-  overflow: hidden;
   z-index: 120;
   color: red;
   border-radius: 50%;
@@ -307,6 +312,15 @@ body {
   height: 50px;
   cursor: pointer;
 } 
+.button-label-text {
+  position: absolute;
+  color: white;
+  bottom: -30px;
+  width: 100px;
+  text-align: center;
+  margin-left: -50px;
+  left: 50%;
+}
 #remove-sticker-button, 
 #sticker-button { /* left aligned */
   position: absolute;
@@ -326,8 +340,10 @@ body {
   background-color: white !important;
   border: 2px solid #fc15ab;
 }
-#trash-button,
-#start-button { /* centered */
+#start-button {
+  display: none;
+}
+#trash-button { /* centered */
   position: absolute;
   left: 50%;
   top: 50%;
@@ -379,8 +395,8 @@ body {
   display: none;
   width: 100%;
   height: 20vh;
-  background-color: #fc15ab;
-  color: white;
+  color: #fc15ab;
+  background-color: white;
 }
 #promocode-container.active {
   display: block;  
@@ -399,9 +415,9 @@ body {
 }
 #download-image-button {
   display: inline-block;
-  background: white;
-  color: #fc15ab;
-  padding: 6px 12px;
+  color: white;
+  background-color: #fc15ab;
+  padding: 6px 18px;
   margin-bottom: 10px;
   font-size: 1.5em;
   cursor: pointer;
@@ -621,7 +637,7 @@ body {
   text-align: center;
   width: 360px;
   margin: 20px;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 #notification-alert,
 #notification-confirm {
@@ -654,6 +670,31 @@ body {
 }
 #privacy {
   padding: 20px;
+}
+
+/* Tooltip container */
+.tool-tip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+/* Tooltip text */
+.tool-tip .tool-tip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 10;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tool-tip:hover .tool-tip-text {
+  visibility: visible;
 }
 
 /**
@@ -696,4 +737,8 @@ body {
   to {
     background-position-y: -3050px;
   }
+}
+
+.button-credits {
+  z-index: 800 !important;
 }

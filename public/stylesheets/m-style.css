@@ -8,7 +8,10 @@ body {
   height: 100vh;
   position: relative;
   padding: 0px;
-  font-family: 'Boogaloo', Arial, Helvetica, sans-serif !important;
+  font-family: 'ClearSans', Arial, Helvetica, sans-serif !important;
+}
+.boogaloo {
+  font-family: 'boogaloo', Arial, Helvetica, sans-serif !important;
 }
 #main {
   background-image: url("../images/bg.jpg");
@@ -52,8 +55,8 @@ body {
 }
 #instructions {
   position: absolute;
-  width: 70vw;
-  top: 40%;
+  padding: 10px 20px;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
@@ -229,8 +232,10 @@ body {
   background-color: white !important;
   border: 2px solid #fc15ab;
 }
-#sticker-button,
 #start-button { /* centered */
+  display: none;
+}
+#sticker-button {
   position: absolute;
   left: 50%;
   top: 50%;

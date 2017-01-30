@@ -76,86 +76,41 @@
 		  ga('hvTracker.send', 'pageview');
 		</script>
 		
+  	<!-- OKgrl2 logo -->
+  	<link rel="stylesheet" href="http://okgrl.com/img/logo/index.css">
+  	
+  	<!-- OKgrl2 loader -->
+		<link rel="stylesheet" href="http://okgrl.com/loader/loader.min.css">
+		<script src="http://okgrl.com/loader/loader.js"></script>
+			 
   </head>
   
   <body>
+
+		<!-- OK GRL 2 loader -->
+		<div id="loader">
+      <div id="wrapper-loader-fadein">
+        <div id="loader-content">
+          <div class="wrapper-glow">
+            <img id="glow" src="http://okgrl.com/loader/Loader-glow.png">
+          </div>
+          <img id="elements" src="http://okgrl.com/loader/Loader-elements.png">
+          <div id="loading-bar">
+            <div class="load" id="progress-green"></div>
+          </div>
+        </div>
+      </div>
+	    <div id="jokes">
+	    </div>
+   	</div>
+  	
 		<div id="brim-main">
     
 			<div id="main">
-				
-				<!-- Intro pages <DEPRECATED>
-				<div id="slider" class="blue-gradient-bg" style="display:none;">
-						
-					<div id="slider-logo">
-						<br>
-			    	<img src="/images/greycork-logo.png">
-			    </div>
-				    
-					<div id="slider-navigation" class="">
-						<div class="slider-nav active" data-index="0"></div>
-						<div class="slider-nav" data-index="1"></div>
-						<div class="slider-nav" data-index="2"></div>
-						<div class="slider-nav" data-index="3"></div>
-						<div class="slider-nav" data-index="4"></div>
-					</div>
-						
-					<div id="slider-footer">
-					  <div id="skip-tutorial">skip the tutorial</div>	
-					</div>
-					
-					<div id='slider-swipe-right' style="font-size: 1.0em;text-transform:uppercase">
-		    		(Swipe right)
-		    	</div>
-					
-					// do not change the <ul> element - slider uses this as identifier 
-					<ul> 
-					
-					  <li class="slide">
-					    <div class="slide-content">
-					    	<img src="/images/slide1.png">
-					    	<div class="" style="font-size: 1.5em;">
-					    		Play with stickers and imagine your home with Greycork.
-					    	</div>
-					    </div>
-					  </li>
-					  
-					  <li class="slide">
-					  	<div class="slide-content">
-					    	<img src="/images/slide2.png">
-					    	<div class="" style="font-size: 1.5em;">
-					    		Take a picture of your home, or upload one.
-					    	</div>
-					    </div>
-					  </li>
-					   
-					  <li class="slide">
-					  	<div class="slide-content">
-					    	<img src="/images/slide3.png">
-					    	<div class="" style="font-size: 1.5em;">
-					    		Select a sticker to add to your scene.
-					    	</div>
-					    </div>
-					  </li>
-					  					   
-					  <li class="slide">
-					  	<div class="slide-content">
-					    	<img src="/images/slide4.png">
-					    	<div class="" style="font-size: 1.5em;">
-					    		Rotate, scale, and translate, your stickers.
-					    	</div>
-					    </div>
-					  </li>
-					  
-					  <li class="slide">
-					    <div class="slide-content">
-					  		<div id="play-now">Play Now</div>
-					  	</div>
-					  </li>
-					  				  
-					</ul>
-				</div>
-				-->
-				
+		  	<!-- ok girl 2 logo -->
+				<div class="okgrl-logo"> </div>
+		  	<!--<a href="/" class="okgrl-logo-mini logo" style="top: 0; left: 0"></a>-->
+			
 				<!-- Navigation -->
 				<div id="nav-button" class="generic-button">
 					<img src="/images/menu-icon.png" class="generic-button-image">
@@ -169,7 +124,7 @@
 					<div id="nav-container-top">
 						<img src="/images/nav-image.png">
 						<br><br>
-						<div>Sticker Book</div>
+						<div class="boogaloo">Sticker Book</div>
 					</div>
 					<div id="nav-container-bottom">
 						<div id="nav-play" class="nav-item">Start Over</div>
@@ -178,13 +133,7 @@
 				</div>
 				
 				<!-- instructions/background-image TODO -->
-				<div id="instructions-container" class="active">
-					<div id="instructions">
-						<div style="font-size: 1.8em;">Hey! take a photo!</div>
-						<!--<br><div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>-->
-					</div>	
-					<!--<div id="instructions-arrow">&darr;</div>	-->
-				</div>
+				<div id="instructions-container" class="active"></div>
 		
 				<!-- canvas -->
 				<div id="editor-middle">
@@ -197,12 +146,12 @@
 
 					<!-- add sticker button -->
           <div id="sticker-button" class="generic-button">
-          	<img src="/images/sticker-menu-icon.png" class="generic-button-image">
+          	<img src="/images/plus.svg" class="generic-button-image">
           </div>
           
 					<!-- add trash canvas button -->
           <div id="trash-button" class="generic-button">
-          	<img src="/images/trash-icon.png" class="generic-button-image">
+          	<img src="/images/undo.svg" class="generic-button-image">
           </div>
 
 	  		  <!-- Take picture button
@@ -214,12 +163,15 @@
 		  		
 			  	<!-- Start button -->
 	        <div id="start-button" class="generic-button active" onclick="">
-	        	<img src="/images/upload-icon.png" class="generic-button-image">
+	        	<div id="instructions">
+							<div style="font-size: 1.4em;" class="boogaloo">START</div>
+							<!--<br><div id="instructions-disclaimer">By choosing to take a picture, you agree to our terms as stated on our <a href="/">privacy page</a>.</div>-->
+						</div>
 	        </div>
 
 					<!-- save image button -->
           <div id="save-button" class="generic-button">
-          	<img src="/images/save-icon.png" class="generic-button-image">
+          	<img src="/images/download.svg" class="generic-button-image">
           </div>
 
 					<!-- Show on download image page-->
@@ -335,7 +287,7 @@
  		<div id="brim-mask">
  			<div id="brim-mask-content">
 	 			<img src="/images/nav-image.png" style="width:80%">
-	 			<div class="h1" style="margin-top:10px;">
+	 			<div class="h1 boogaloo" style="margin-top:10px;">
 	 				Sticker Book!
 	 			</div>
 	 			<br>

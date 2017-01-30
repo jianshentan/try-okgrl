@@ -2,130 +2,18 @@
 /* global localStorage */
 
 $(document).ready(function () {
-  /**
-   * ----------- Carousel ------------
-   **/
-   
-  /* DEPRECATED 
-  
-  if (mobile) {
-    var carousel;
-    carousel = $("ul");
-    var totalSlides = $(".slider-nav").length;
-    
-    // initialize carousel
-    carousel.itemslide({
-      one_item: true
-    });
-    
-    // reload carousel on window resize
-    $(window).resize(function () {
-      carousel.reload();
-    });
-    
-    // detect carousel index to update nav
-    carousel.on('changePos', function(e) {
-      var slideIndex = carousel.getActiveIndex();
 
-      // hide all other slide nav circles
-      $(".slider-nav").each(function(){
-        $(this).removeClass("active");
-      });
-      // show the circle 
-      $(".slider-nav[data-index='"+slideIndex+"']").addClass("active");
-      
-      // show/hide 'slide-right' label depending on slide position
-      if (slideIndex == totalSlides-1) {
-        $("#slider-swipe-right").hide();
-      } else {
-        $("#slider-swipe-right").show();
-      }
-    });
-    
-  } else {
-    var leftSlider = $("#slider-left");
-    var rightSlider = $("#slider-right");
-    rightSlider.show();
-    
-    rightSlider.click(function() {
-      leftSlider.show();
-      
-      var currNav = $(".slider-nav.active");
-      var nextNav = currNav.next(".slider-nav");
-      currNav.removeClass("active");
-      nextNav.addClass("active"); 
-      if (nextNav.is(":last-child")) {
-        rightSlider.hide();
-      }
-      
-      var currSlide = $(".slide-content.active");
-      var nextSlide = currSlide.parent().next("li").find(".slide-content");
-      currSlide.fadeOut(200, function() {
-        currSlide.removeClass("active");
-        nextSlide.fadeIn(200, function(){
-          nextSlide.addClass("active");
-        });  
-      });
-      
-    });
-    
-    leftSlider.click(function() {
-      rightSlider.show();
-      
-      var currNav = $(".slider-nav.active");
-      var prevNav = currNav.prev(".slider-nav");
-      currNav.removeClass("active");
-      prevNav.addClass("active"); 
-      if (prevNav.is(":first-child")) {
-        leftSlider.hide();
-      }
-      
-      var currSlide = $(".slide-content.active");
-      var prevSlide = currSlide.parent().prev("li").find(".slide-content");
-      currSlide.fadeOut(200, function() {
-        currSlide.removeClass("active");
-        prevSlide.fadeIn(200, function() {
-          prevSlide.addClass("active");  
-        });
-      });
-    });
-    
-    var slides = [];
-    $(".slider-nav").each(function() {
-      slides.push($(this).data("index"));
-    });
-    
-  }
-  
-  // skip tutorial
-  $("#skip-tutorial").click(function() {
-    $("#slider").slideUp();  
-    localStorage.setItem("skippedTutorial", "true");
-  });
-  
-  // complete tutorial
-  $("#play-now").click(function() {
-    $("#slider").slideUp();  
-    localStorage.setItem("completedTutorial", "true");
-  });
-  
-  // unless skippedTutorial or completedTutorial, show tutorial
-  if (localStorage.getItem("completedTutorial") == "true" ||
-      localStorage.getItem("skippedTutorial") == "true") {
-    $("#slider").hide();
-  } else {
-    $("#slider").show();
-  }
-  */
-    
-  
   /**
    * ----------- Nav bar------------
    **/
   
   var navContainer = $("#nav-container");
   var navWidth = navContainer.width();
-  navContainer.css("right", -navWidth);
+  if (mobile) {
+    navContainer.css("right", -navWidth);
+  } else {
+    navContainer.css("right", 0);
+  }
   
   $("#nav-button, #sticker-nav-button").click(function() {
     navContainer.animate({

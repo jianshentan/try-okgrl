@@ -93,6 +93,14 @@ Sticker = function(imageSrc, containerElementSelector) {
   
   onAnimationFrame();
   
+  this.setTop = function() {
+    $(sticker).css("border", "2px dashed white");
+  };
+  
+  this.unSetTop = function() {
+    $(sticker).css("border", "2px solid rgba(0,0,0,0)");
+  };
+  
   this.getPos = function() {
     return [posX, posY];
   };
@@ -116,11 +124,17 @@ Sticker = function(imageSrc, containerElementSelector) {
   function setStickerToTop() {
   	// Reorder 'active' sticker to top. 
   	
+  	// 0)
+  	for (var i in stickerStack) {
+  	  stickerStack[i].unSetTop();
+  	}
+  	
   	// 1) reorder stickerStack, 
   	var currSticker = sticker;
   	for (var i in stickerStack) {
   	  if ($(stickerStack[i].getSticker()).is(currSticker)) {
   	    var stickerObj = stickerStack.splice(i, 1)[0]; // remove from array
+  	    stickerObj.setTop();
   	    stickerStack.push(stickerObj);
   	  }
   	}
@@ -155,7 +169,6 @@ Sticker = function(imageSrc, containerElementSelector) {
   	document.addEventListener('mouseup', onDocumentMouseUp);
   	document.addEventListener('mousemove', onDocumentMouseMove);
   	if(event.shiftKey === true) {
-  	  console.log("shift is clicked!");
   		//assume second touchpoint is in middle of screen
   		handleGestureStart(posX, posY, event.clientX, event.clientY);
   	} else {
@@ -167,7 +180,6 @@ Sticker = function(imageSrc, containerElementSelector) {
   
   function onDocumentMouseMove(event) {
   	if(event.shiftKey) {
-  	  console.log("shift is clicked2!");
   		handleGesture(posX, posY, event.clientX, event.clientY); 
   	} else {
   		handleDragging(event.clientX, event.clientY);
@@ -373,10 +385,10 @@ Sticker.prototype.equals = function(sticker) {
   return $(this.getSticker()).is(sticker.getSticker());
 };
 
+Sticker.prototype.setTop = function() {
+  this.setTop();  
+};
 
-
-
-
-
-
-
+Sticker.prototype.unSetTop = function() {
+  this.unSetTop();  
+};
