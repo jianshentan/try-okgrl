@@ -476,7 +476,7 @@ $(window).on("saveImage", function(e) {
     destinationCanvas.toBlob(function(blob) {
       var a = document.getElementById(DOWNLOAD_IMAGE_URL_ID);
       a.href = window.URL.createObjectURL(blob);
-      a.download = "try-greycork.jpg";
+      a.download = "Girli.jpg";
     }, "image/jpeg", 0.7);
   }
   
