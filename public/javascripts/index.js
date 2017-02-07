@@ -41,8 +41,8 @@ $(document).ready(function () {
     window.location = 'https://www.greycork.com';
   });
   
-  $("#nav-blog").click(function() {
-    window.location = 'https://www.greycork.com';
+  $("#nav-okgrl").click(function() {
+    window.location = 'https://www.okgrl.com';
   });
   
   $("#nav-privacy").click(function() {
